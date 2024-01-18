@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ES">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/dashboard.css') }}">
+        <title>Bienvenido, {{session.nombre}}!</title>
+    </head>
+    <body>
+        <section class="barra">
+            <div>
+                <h1>Arbortrario</h1>
+                <h3>Sitio para rastrear árboles plantados al azar.</h3>
+            </div>
+            <div>
+                <div class="bienvenido">
+                    <a href="/mis/arboles/{{session.id}}">Mis Arboles</a>
+                    <h1>Bienvenido, {{session.nombre}}! </h1>
+                </div>
+                <div class="botones">
+                    <form method="get" action="/nuevo/arbol">
+                        <h2><button>Planta un Arbol!</button></h2>
+                    </form>
+                    <form method="post" action="/procesa/logout">
+                        <h2><button>Cerrar Sesion</button></h2>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div>
+                <h2>Arboles</h2>
+            </div>
+            <div class="todos-arboles">
+                <table>
+                    <thead>
+                        <th>Especie</th>
+                        <th>Plantado por</th>
+                        <th>Acciones</th>
+                    </thead>
+                    <tbody>
+                    {% for arbol in lista_arboles %}
+                    <tr>
+                        <td> {{arbol.especie}} </td>
+                        <td>{{arbol.plantado_por}}</td>
+                        <td><a href="/ver/arbol/{{arbol.id_arbol}}">Detalles</a></td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                    
+            </div>
+        </section>
+    </body>
+</html>

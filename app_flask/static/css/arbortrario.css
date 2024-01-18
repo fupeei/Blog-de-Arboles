@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;1,100&display=swap');
+*{
+    font-family: 'Roboto', sans-serif;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.barra{
+    display: flex;
+    gap: 300px;
+}
+.botones{
+    display: flex;
+}
+table{
+    width: 500px;
+    border: 3px solid black;
+    text-align: center;
+}
+#botones-tabla{
+    display: flex;
+    gap: 20px;
+}

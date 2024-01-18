@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ES">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/nuevo_arbol.css') }}">
+        <title>Nuevo Arbol</title>
+    </head>
+    <body>
+        <section>
+            <div class="barra">
+                <div >
+                    <h1>Arbortrario</h1>
+                    <h3>Sitio para rastrear árboles plantados al azar.</h3>
+                </div>
+                <div>
+                    <div class="bienvenido">
+                        <a href="/mis/arboles/{{session.id}}">Mis Arboles</a>
+                        <h1>Bienvenido, {{session.nombre}}! </h1>
+                    </div>
+                    <div class="botones">
+                        <form method="get" action="/dashboard">
+                            <h2><button>Dashboard</button></h2>
+                        </form>
+                        <form method="post" action="/procesa/logout">
+                            <h2><button>Cerrar Sesion</button></h2>
+                        </form>
+                    </div>
+                </div>
+            <div>
+        </section>
+        <section>
+                <h1>Planta un Arbol!</h1>
+                <form method="post" action="/procesar/nuevo/arbol">
+                    <label for="especie">Especie</label>
+                    <input name="especie" type="text">
+                    <div class="error_login">
+                        {%for mensaje in get_flashed_messages(category_filter=["error_especie"]) %}
+                            {{mensaje}}
+                        {% endfor %}
+                    </div>
+
+                    <label for="lugar">Lugar</label>
+                    <input class="lugar" name="lugar" type="text">
+                    <div class="error_login">
+                        {%for mensaje in get_flashed_messages(category_filter=["error_lugar"]) %}
+                            {{mensaje}}
+                        {% endfor %}
+                    </div>
+                    <label for="razon">Razon</label>
+                    <input class="razon" name="razon" type="text">
+                    <div class="error_login">
+                        {%for mensaje in get_flashed_messages(category_filter=["error_razon"]) %}
+                            {{mensaje}}
+                        {% endfor %}
+                    </div>
+                    <label for="plantado_en">Fecha de Plantado</label>
+                    <input class="plantado_en" name="plantado_en" type="date">
+                    <button>Plantar</button>
+                </form>
+            </div>
+        </section>
+    </body>
+</html>

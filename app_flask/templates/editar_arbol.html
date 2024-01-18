@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ES">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/editar_arbol.css') }}">
+        <title>Re-plantar</title>
+    </head>
+    <body>
+        <section class="barra">
+            <div>
+                <h1>Arbortrario</h1>
+                <h3>Sitio para rastrear árboles plantados al azar.</h3>
+            </div>
+            <div>
+                <div class="bienvenido">
+                    <a href="/mis/arboles/{{session.id}}">Mis Arboles</a>
+                    <h1>Bienvenido, {{session.nombre}}! </h1>
+                </div>
+                <div class="botones">
+                    <form method="get" action="/dashboard">
+                        <h2><button>Dashboard</button></h2>
+                    </form>
+                    <form method="post" action="/procesa/logout">
+                        <h2><button>Cerrar Sesion</button></h2>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <div>
+            <h1>Re-Planta tu Arbol!</h1>
+            <form class="formulario" method="post" action="/procesar/editar/arbol/{{arbol.id_arbol}}">
+                <label for="especie">Especie</label>
+                <input name="especie" type="text" value="{{arbol.especie}}">
+                <div class="error_login">
+                    {%for mensaje in get_flashed_messages(category_filter=["error_especie"]) %}
+                        {{mensaje}}
+                    {% endfor %}
+                </div>
+
+                <label for="lugar">Lugar</label>
+                <input class="lugar" name="lugar" type="text" value="{{arbol.lugar}}">
+                <div class="error_login">
+                    {%for mensaje in get_flashed_messages(category_filter=["error_lugar"]) %}
+                        {{mensaje}}
+                    {% endfor %}
+                </div>
+                <label for="razon">Razon</label>
+                <input class="razon" name="razon" type="text" value="{{arbol.razon}}">
+                <div class="error_login">
+                    {%for mensaje in get_flashed_messages(category_filter=["error_razon"]) %}
+                        {{mensaje}}
+                    {% endfor %}
+                </div>
+                <label for="plantado_en">Fecha de Plantado</label>
+                <input class="plantado_en" name="plantado_en" type="date" value="arbol.plantado_en">
+                <button>Actualizar</button>
+            </form>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ES">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/arbortrario.css') }}">
+        <title>Mis Arboles</title>
+    </head>
+    <body>
+        <section class="barra">
+            <div>
+                <h1>Arbortrario</h1>
+                <h3>Sitio para rastrear árboles plantados al azar.</h3>
+            </div>
+            <div>
+                <h1>Bienvenido, {{session.nombre}}! </h1>
+                <div class="botones">
+                    <form method="get" action="/dashboard">
+                        <h2><button>Dashboard</button></h2>
+                    </form>
+                    <form method="post" action="/procesa/logout">
+                        <h2><button>Cerrar Sesion</button></h2>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="tabla">
+                <h1>Administrar mis Arboles</h1>
+                <table>
+                    <thead>
+                        <th>Especie</th>
+                        <th>Fecha de plantación</th>
+                        <th>Acciones</th>
+                    </thead>
+                    <tbody>
+                        {%for arbol in lista_mis_arboles%}
+                        <tr>
+                            <td> {{arbol.especie}} </td>
+                            <td>{{arbol.plantado_en}}</td>
+                            <td id="botones-tabla">
+                                <form method="post" action="/eliminar/arbol/{{arbol.id_arbol}}">
+                                    <button>Eliminar</button>
+                                </form>
+                                <a href="/editar/arbol/{{arbol.id_arbol}}">Editar</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </body>
+</html>
